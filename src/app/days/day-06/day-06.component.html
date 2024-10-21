@@ -1,0 +1,37 @@
+<blockquote>
+  <p>This is a really small cinema!</p>
+
+  <p>Let users pick seats and count them in <i>selected</i> counter.</p>
+
+  <p>Hide seats and show the final cost after user clicks <i>buy</i> button.</p>
+</blockquote>
+
+<section *ngIf="cost$ | async as cost; else choose" class="final-cost">
+  Final cost is $ {{ cost }}
+</section>
+
+<ng-template #choose>
+  <h3>Choose your seats</h3>
+
+  <section class="cinema">
+    <button
+      *tuiRepeatTimes="let index of 10"
+      class="seat"
+      (click)="selectSeat$.next(index + 1)"
+    >
+      {{ index + 1 }}
+    </button>
+  </section>
+
+  <ng-container *ngIf="selectedMessage$ | async as message">
+    Selected: {{ message }}
+
+    <button
+      class="buy"
+      [disabled]="message === noneMessage"
+      (click)="selectSeat$.complete()"
+    >
+      Buy
+    </button>
+  </ng-container>
+</ng-template>

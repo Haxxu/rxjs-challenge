@@ -1,0 +1,18 @@
+<blockquote>Create a countdown and a button to restart it</blockquote>
+
+<section>
+  <h2>RxJS</h2>
+  <ng-container *ngIf="countdown$ | async as value; else resend">
+    Resend code in {{ value }} sec.
+  </ng-container>
+
+  <ng-template #resend>
+    <button (click)="resend$.next()">Resend code</button>
+  </ng-template>
+</section>
+
+<section>
+  <h2>CSS 🤯</h2>
+  <button class="button">Resend code</button>
+  <div class="message">Resend code in <time datetime="10s"></time> sec.</div>
+</section>

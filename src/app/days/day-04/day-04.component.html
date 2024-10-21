@@ -1,0 +1,25 @@
+<blockquote>
+  <p>
+    Here you have <code>loadingService</code> with <code>load</code> method.
+  </p>
+
+  <p>
+    Method emits <code>number</code> of % loaded or <code>string</code> with
+    final result.
+  </p>
+
+  <p>Show progress bar with loaded % value until result</p>
+</blockquote>
+
+<button class="button" (click)="onButtonClick()">Start loading</button>
+
+<p *ngIf="result$ | async as result; else loading">
+  {{ result }}
+</p>
+
+<ng-template #loading>
+  <ng-container *ngIf="loadingProgress$ | async as progress">
+    <progress class="progress" [max]="100" [value]="progress"></progress>
+    <div class="loading">Loading...</div>
+  </ng-container>
+</ng-template>

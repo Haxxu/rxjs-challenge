@@ -1,0 +1,71 @@
+@keyframes countdown {
+  0% {
+    content: "10";
+  }
+  10% {
+    content: "9";
+  }
+  20% {
+    content: "8";
+  }
+  30% {
+    content: "7";
+  }
+  40% {
+    content: "6";
+  }
+  50% {
+    content: "5";
+  }
+  60% {
+    content: "4";
+  }
+  70% {
+    content: "3";
+  }
+  80% {
+    content: "2";
+  }
+  90% {
+    content: "1";
+  }
+  100% {
+    content: "0";
+  }
+}
+
+@keyframes disappear {
+  from {
+    visibility: visible;
+  }
+  to {
+    visibility: hidden;
+  }
+}
+
+.button {
+  animation: disappear 10s step-start reverse;
+}
+
+.message {
+  visibility: hidden;
+  animation: disappear 10s;
+}
+
+time::before {
+  content: "";
+  animation: countdown 10s steps(1);
+}
+
+time::after {
+  content: "";
+  animation: none; /* No infinite loop required, since the countdown is 10 seconds now */
+}
+
+/* Resetting animations */
+.button:active,
+.button:active + .message,
+.button:active + .message time::before,
+.button:active + .message time::after {
+  animation: none;
+}
