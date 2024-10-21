@@ -1,0 +1,20 @@
+<blockquote>
+  Show error message for 5 seconds if login has failed.
+
+  <p><strong>Bonus task:</strong></p>
+  Show user name instead of button upon successful login and disable button
+  during server request.
+</blockquote>
+<div *ngIf="error$ | async as error" class="error">
+  {{ error }}
+</div>
+
+<p *ngIf="user$ | async as user; else login">Welcome, {{ user }}</p>
+
+<ng-template #login>
+  <p>
+    <button [disabled]="disabled$ | async" (click)="submit$.next()">
+      Submit
+    </button>
+  </p>
+</ng-template>
