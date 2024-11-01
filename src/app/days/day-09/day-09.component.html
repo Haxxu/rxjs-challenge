@@ -1,0 +1,20 @@
+<blockquote>
+  Show subtitles two lines at a time (current and upcoming)
+</blockquote>
+<div *ngIf="song$ | async as lines" class="lyrics">
+  <div *ngFor="let line of lines; let first = first">
+    <ng-container *ngIf="first; else plain">
+      <span
+        *ngFor="let word of lines[0].words; let index = index"
+        class="word animated"
+        [style.animationDelay.ms]="getDuration(lines[0]) * index"
+        [style.animationDuration.ms]="getDuration(lines[0])"
+      >
+        {{ word }}
+      </span>
+    </ng-container>
+    <ng-template #plain>
+      <span *ngFor="let word of lines[1].words" class="word">{{ word }}</span>
+    </ng-template>
+  </div>
+</div>

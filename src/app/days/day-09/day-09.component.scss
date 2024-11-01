@@ -1,0 +1,62 @@
+@keyframes fill {
+  from {
+    background-position: 100% 0;
+  }
+
+  to {
+    background-position: 0 0;
+  }
+}
+
+@keyframes current {
+  from {
+    opacity: 0.4;
+    transform: translate3d(0, 1.5em, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes upcoming {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.4;
+  }
+}
+
+.lyrics {
+  font-size: 1.5em;
+  line-height: 1.5em;
+  font-weight: bold;
+  margin: 1em 0;
+}
+
+.lyrics > :first-child {
+  min-height: 1.5em;
+  animation: current 0.3s;
+}
+
+.lyrics > :last-child {
+  opacity: 0.4;
+  animation: upcoming 0.3s;
+}
+
+.word {
+  display: inline-block;
+  color: #3d6bb1;
+  padding: 0 0.12em;
+}
+
+.animated {
+  animation: fill linear both;
+  background: linear-gradient(to right, #ce4039 50%, #3d6bb1 50%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
