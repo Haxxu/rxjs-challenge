@@ -1,0 +1,27 @@
+<blockquote>
+  <p>
+    There is a color picker with a circle. Make an RxJS stream to allow user to
+    drag a circle inside palette and choose another color.
+  </p>
+
+  <p>
+    <strong>Additional task:</strong> show the HEX code of selected color under
+    palette
+  </p>
+</blockquote>
+
+<div
+  #colorPicker
+  *ngIf="coordinates$ | async as coordinates"
+  class="color-picker"
+>
+  <div
+    class="circle"
+    [style.left.px]="coordinates[0]"
+    [style.top.px]="coordinates[1]"
+  ></div>
+</div>
+
+<p>HSV: {{ hsv$ | async }}</p>
+<p>RGB: {{ rgb$ | async }}</p>
+<p>HEX: {{ hex$ | async }}</p>

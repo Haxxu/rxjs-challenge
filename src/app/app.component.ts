@@ -11,6 +11,7 @@ import { Day06Component } from './days/day-06/day-06.component';
 import { Day07Component } from './days/day-07/day-07.component';
 import { Day08Component } from './days/day-08/day-08.component';
 import { Day09Component } from './days/day-09/day-09.component';
+import { Day10Component } from './days/day-10/day-10.component';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,7 @@ import { Day09Component } from './days/day-09/day-09.component';
     Day07Component,
     Day08Component,
     Day09Component,
+    Day10Component,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
