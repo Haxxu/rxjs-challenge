@@ -1,0 +1,35 @@
+import { car, gameHeight, gameWidth, player } from './constants';
+import { Game } from './interfaces';
+
+const createElem = (column: number) =>
+  ((elem: any) => (
+    (elem.style.display = 'inline-block'),
+    (elem.style.marginLeft = '3px'),
+    (elem.style.height = '12px'),
+    (elem.style.width = '6px'),
+    (elem.style.borderRadius = '40%'),
+    (elem.style['background-color'] =
+      column === car ? 'green' : column === player ? 'blue' : 'white'),
+    elem
+  ))(document.createElement('div'));
+
+export const render = ([state, road, playerPosition]: Game) =>
+  ((renderFrame: any) => (
+    road.cars.forEach((c) => (renderFrame[c.x][c.y] = car)),
+    (document.getElementById(
+      'game'
+    )!.innerHTML = `Score: ${state.score} Lives: ${state.lives} Level: ${state.level}`),
+    (renderFrame[gameHeight - 1][playerPosition.y] = player),
+    renderFrame.forEach((r: any) => {
+      const rowContainer = document.createElement('div');
+      r.forEach((c: any) => rowContainer.appendChild(createElem(c)));
+      document.getElementById('game')?.appendChild(rowContainer);
+    })
+  ))(
+    Array(gameHeight)
+      .fill(0)
+      .map((e) => Array(gameWidth).fill(0))
+  );
+
+export const renderGameOver = () =>
+  (document.getElementById('game')!.innerHTML += '<br/>GAME OVER!!!');
